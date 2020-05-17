@@ -39,9 +39,6 @@ class BantuanController extends Controller
             ->addJs('vendor/bootstrap/js/bootstrap.bundle.min.js')
             ->addJs('vendor/jquery-easing/jquery.easing.min.js')
             ->addJs('js/sb-admin-2.min.js')
-            ->addJs('vendor/chart.js/Chart.min.js')
-            ->addJs('js/demo/chart-area-demo.js')
-            ->addJs('js/demo/chart-pie-demo.js')
             ->addJs('vendor/datatables/jquery.dataTables.min.js')
             ->addJs('vendor/datatables/dataTables.bootstrap4.min.js')
             ->addJs('js/demo/datatables-demo.js');
@@ -91,9 +88,6 @@ class BantuanController extends Controller
             ->addJs('vendor/bootstrap/js/bootstrap.bundle.min.js')
             ->addJs('vendor/jquery-easing/jquery.easing.min.js')
             ->addJs('js/sb-admin-2.min.js')
-            ->addJs('vendor/chart.js/Chart.min.js')
-            ->addJs('js/demo/chart-area-demo.js')
-            ->addJs('js/demo/chart-pie-demo.js')
             ->addJs('vendor/datatables/jquery.dataTables.min.js')
             ->addJs('vendor/datatables/dataTables.bootstrap4.min.js')
             ->addJs('js/demo/datatables-demo.js');
@@ -125,9 +119,6 @@ class BantuanController extends Controller
             ->addJs('vendor/bootstrap/js/bootstrap.bundle.min.js')
             ->addJs('vendor/jquery-easing/jquery.easing.min.js')
             ->addJs('js/sb-admin-2.min.js')
-            ->addJs('vendor/chart.js/Chart.min.js')
-            ->addJs('js/demo/chart-area-demo.js')
-            ->addJs('js/demo/chart-pie-demo.js')
             ->addJs('vendor/datatables/jquery.dataTables.min.js')
             ->addJs('vendor/datatables/dataTables.bootstrap4.min.js')
             ->addJs('js/demo/datatables-demo.js');
