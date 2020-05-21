@@ -87,9 +87,18 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-              <h1 class="h3 mb-0 text-gray-800">Rekap Bantuan Hingga Kini</h1>
-          </div>
+          <h1 class="h3 mb-0 text-gray-800">Rekap Bantuan Hingga Kini</h1><br>
+          <p class="mb-4">Pilihlah salah satu kategori untuk melihat rekap data.</p>
+
+          <button class="btn btn-primary" onclick="danaToggle()">Dana</button>
+          <button class="btn btn-primary" onclick="makananToggle()">Makanan</button>
+          <button class="btn btn-primary" onclick="kesehatanToggle()">Kesehatan</button>
+
+          <!-- Begin Page Content Dana -->
+          <div class="container-fluid" id="danaToggle" style="display: none;">
+
+          <!-- Page Heading Dana -->
+          <p class="mb-4">Berikut adalah pendataan dari bantuan dana yang telah diterima.</p>
 
           <!-- Recap Dana -->
           <div class="card shadow mb-4">
@@ -97,10 +106,48 @@
               <h6 class="m-0 font-weight-bold text-primary">Kategori Dana</h6>
             </div>
             <div class="card-body">
-              <p class="mb-4">Bantuan dalam bentuk dana/uang telah diterima sebanyak: <b>Rp. <?php echo $money ?></b><br>
-              Bantuan dalam bentuk dana/uang telah diterima dari: <b><?php echo $money_customer ?> orang</b></p>
+            <p class="mb-4">Bantuan dalam bentuk dana/uang telah diterima dari: <b><?php echo $money_customer ?> orang</b><br>
+              Bantuan dalam bentuk dana/uang telah diterima sebanyak: <b>Rp. <?php echo $money ?></b></p>
             </div>
           </div>
+
+          <!-- DataTales Dana -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">List Transaksi</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th style="text-align: center">Nama Penggalang</th>
+                      <th style="text-align: center">Jumlah Dana Bantuan</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <?php foreach ($danabantuans as $danabantuan) {?>
+                    <tr>
+                        <?php foreach ($danacustomers as $danacustomer) {
+                            if($danacustomer->id == $danabantuan->id_transaksi) echo "<td>", $danacustomer->nama_penggalang, "</td>";
+                        } ?>
+                        <td> <?php echo "Rp ", $danabantuan->jumlah_uang; ?></td>
+                    </tr>
+                  <?php } ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          </div>
+          <!-- /.container-fluid -->
+
+          <!-- Begin Page Content Bahan Makanan -->
+          <div class="container-fluid" id="makananToggle" style="display: none;">
+
+          <!-- Page Heading Bahan Makanan -->
+          <p class="mb-4">Berikut adalah pendataan dari bantuan bahan makanan yang telah diterima.</p>
 
           <!-- Recap Bahan Makanan -->
           <div class="card shadow mb-4">
@@ -116,6 +163,44 @@
             </div>
           </div>
 
+          <!-- DataTales Bahan Makanan -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">List Transaksi</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th style="text-align: center">Nama Penggalang</th>
+                      <th style="text-align: center">Nama Barang Bantuan</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <?php foreach ($makananbantuans as $makananbantuan) {?>
+                    <tr>
+                        <?php foreach ($makanancustomers as $makanancustomer) {
+                            if($makanancustomer->id == $makananbantuan->id_transaksi) echo "<td>", $makanancustomer->nama_penggalang, "</td>";
+                        } ?>
+                        <td> <?php echo$makananbantuan->nama_barang; ?></td>
+                    </tr>
+                  <?php } ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          </div>
+          <!-- /.container-fluid -->
+
+          <!-- Begin Page Content Kesehatan -->
+          <div class="container-fluid" id="kesehatanToggle" style="display: none;">
+
+          <!-- Page Heading Kesehatan -->
+          <p class="mb-4">Berikut adalah pendataan dari bantuan kesehatan yang telah diterima.</p>
+
           <!-- Recap Kesehatan -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -129,6 +214,38 @@
                 <?php } ?>
             </div>
           </div>
+
+          <!-- DataTales Kesehatan -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">List Transaksi</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th style="text-align: center">Nama Penggalang</th>
+                      <th style="text-align: center">Nama Barang Bantuan</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <?php foreach ($kesehatanbantuans as $kesehatanbantuan) {?>
+                    <tr>
+                        <?php foreach ($kesehatancustomers as $kesehatancustomer) {
+                            if($kesehatancustomer->id == $kesehatanbantuan->id_transaksi) echo "<td>", $kesehatancustomer->nama_penggalang, "</td>";
+                        } ?>
+                        <td> <?php echo $kesehatanbantuan->nama_barang; ?></td>
+                    </tr>
+                  <?php } ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          </div>
+          <!-- /.container-fluid -->
 
         </div>
 
@@ -164,6 +281,33 @@
       </div>
     </div>
   </div>
+
+  <script>
+    function danaToggle() {
+      var x = document.getElementById("danaToggle");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+    function makananToggle() {
+      var x = document.getElementById("makananToggle");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+    function kesehatanToggle() {
+      var x = document.getElementById("kesehatanToggle");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+  </script>
 
   <!-- Bootstrap core JavaScript-->
   <?php $this->assets->outputJs('footerJs') ?>

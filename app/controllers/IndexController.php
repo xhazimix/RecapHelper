@@ -1,8 +1,6 @@
 <?php
 
 use Phalcon\Mvc\Controller;
-use Phalcon\Mvc\Model\Manager;
-use Phalcon\Mvc\View;
 
 class IndexController extends Controller
 {
@@ -39,6 +37,19 @@ class IndexController extends Controller
         );
         $this->view->money = $sum_money;
 
+        //tabel kategori dana
+        $this->view->danabantuans = Bantuan::find(
+            [
+                'jenis_bantuan = "Dana"'
+            ]
+        );
+        $idTransaksi = $danabantuans->id_transaksi;
+        $this->view->danacustomers = Transaksi::find(
+            [
+                'id' => $idTransaksi
+            ]
+        );
+
         // Rekap kategori bahan makanan - jumlah orang - distribusi
         $count_cust = Bantuan::count(
             [
@@ -50,11 +61,24 @@ class IndexController extends Controller
 
         $helpname = Bantuan::find(
             [
-                'distinct' => 'nama_barang',
+                'columns' => 'DISTINCT nama_barang',
                 'jenis_bantuan = "Bahan Makanan"'
             ]
         );
         $this->view->reliefitem = $helpname;
+
+        //tabel kategori makanan
+        $this->view->makananbantuans = Bantuan::find(
+            [
+                'jenis_bantuan = "Bahan Makanan"'
+            ]
+        );
+        $idTransaksi = $makananbantuans->id_transaksi;
+        $this->view->makanancustomers = Transaksi::find(
+            [
+                'id' => $idTransaksi
+            ]
+        );
 
         // Rekap kategori kesehatan - jumlah orang - distribusi
         $count_cust = Bantuan::count(
@@ -67,10 +91,23 @@ class IndexController extends Controller
 
         $help_name = Bantuan::find(
             [
-                'distinct' => 'nama_barang',
+                'columns' => 'DISTINCT nama_barang',
                 'jenis_bantuan = "Kesehatan"'
             ]
         );
         $this->view->reliefitems = $help_name;
+
+        //tabel kategori kesehatan
+        $this->view->kesehatanbantuans = Bantuan::find(
+            [
+                'jenis_bantuan = "Kesehatan"'
+            ]
+        );
+        $idTransaksi = $kesehatanbantuans->id_transaksi;
+        $this->view->kesehatancustomers = Transaksi::find(
+            [
+                'id' => $idTransaksi
+            ]
+        );
     }
 }

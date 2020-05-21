@@ -143,6 +143,7 @@ class BantuanController extends Controller
         
         // ambil semua data dari form
         $data = $this->request->getPost();
+        print_r($data);
         
         // update daata transaksi
         $transaksi->assign(
@@ -165,7 +166,7 @@ class BantuanController extends Controller
         
         // ganti dengan data bantuan yg baru
         $i=0;
-        while($data['kat_bantuan']!=NULL){ 
+        while($data['kat_bantuan'][$i]!=NULL){ 
             $bantuan = new Bantuan();
             $bantuan->assign( 
                 [ 
